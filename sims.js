@@ -487,5 +487,48 @@ SIMS.contactor=el=>build(el,{w:640,h:400,
    rearme:'FR1 rearmado: el circuito queda listo; hace falta pulsar de nuevo SB2 (el enclavamiento se perdió).'};
   a.html(`${msg[st.acc]}<br><span class="hint">Circuito de fuerza a la izquierda (QS1 → KM1 → FR1 → M1) y de mando a la derecha. El examen pide identificar cada elemento y «explicar el funcionamiento general»: sigue siempre la corriente de la bobina.</span>`);}});
 
+/* ---- Ajuste ø25 H7/g6 paso a paso (desviaciones en µm) ---- */
+SIMS.ajustePaso=el=>build(el,{w:640,h:380,
+ sliders:[{k:'paso',v:0,min:0,max:6,step:1,l:'paso del cálculo del ajuste (0 = datos)',u:''}],
+ draw(a){a.clear();const p=a.st.paso;
+  const K={H:'#3a63c4',g:'#2c8a52',J:'#c43d63',T:'#b8730c'};
+  const Y=um=>250-um*4;
+  const hx=160,hw=80,gx=270,gw=80;
+  // línea cero (nominal)
+  a.line(120,Y(0),420,Y(0),C.muted,1.2,[5,4]);
+  a.txt('nominal ø25',120,Y(0)-6,C.muted,11,'left');
+  // agujero H7: EI = 0, ES = +21
+  if(p>=1){a.g.fillStyle=K.H;a.g.globalAlpha=0.35;a.g.fillRect(hx,Y(21),hw,Y(0)-Y(21));a.g.globalAlpha=1;
+    a.g.strokeStyle=K.H;a.g.lineWidth=2;a.g.strokeRect(hx,Y(21),hw,Y(0)-Y(21));
+    a.txt('agujero H7',hx+hw/2,Y(21)-10,K.H,12,'center');
+    a.txt('+21',hx-6,Y(21)+4,K.H,11,'right');a.txt('0',hx-6,Y(0)+4,K.H,11,'right');}
+  // eje g6: es = −7, ei = −20
+  if(p>=2){a.g.fillStyle=K.g;a.g.globalAlpha=0.35;a.g.fillRect(gx,Y(-7),gw,Y(-20)-Y(-7));a.g.globalAlpha=1;
+    a.g.strokeStyle=K.g;a.g.lineWidth=2;a.g.strokeRect(gx,Y(-7),gw,Y(-20)-Y(-7));
+    a.txt('eje g6',gx+gw/2,Y(-20)+18,K.g,12,'center');
+    a.txt('−7',gx+gw+6,Y(-7)+4,K.g,11,'left');a.txt('−20',gx+gw+6,Y(-20)+4,K.g,11,'left');}
+  // juego máximo (ES − ei) y mínimo (EI − es)
+  if(p>=3){const x=400;a.line(x,Y(21),x,Y(-20),K.J,2);a.line(x-5,Y(21),x+5,Y(21),K.J,2);a.line(x-5,Y(-20),x+5,Y(-20),K.J,2);
+    a.txt('J_máx',x+8,(Y(21)+Y(-20))/2,K.J,11,'left');}
+  if(p>=4){const x=440;a.line(x,Y(0),x,Y(-7),K.T,2.5);a.line(x-5,Y(0),x+5,Y(0),K.T,2);a.line(x-5,Y(-7),x+5,Y(-7),K.T,2);
+    a.txt('J_mín',x+8,(Y(0)+Y(-7))/2+4,K.T,11,'left');}
+  // paneles
+  const items=[[60,1,'Agujero H7: EI = 0, ES = +21 µm',K.H],[82,2,'Eje g6: ei = −20, es = −7 µm',K.g],
+    [104,3,'J_máx = ES − ei = 21 − (−20) = 41 µm',K.J],[126,4,'J_mín = EI − es = 0 − (−7) = 7 µm',K.T],
+    [148,5,'J_mín > 0 ⇒ ajuste con juego',C.text],[170,6,'T_aj = 41 − 7 = 34 µm = 21 + 13 ✓',C.text]];
+  a.txt('Ajuste ø25 H7/g6',480,36,C.text,13,'left');
+  items.forEach(([y,k,s,c])=>{if(p>=k)a.txt(s,480,y+14,c,10,'left');});
+  const T=[
+   'Ajuste ø25 H7/g6 (norma ISO): agujero H7 y eje g6, nominal 25 mm. Las desviaciones se leen en tablas y se dan en micras respecto a la línea cero.',
+   'Agujero H7: su desviación inferior es EI = 0 y la superior ES = +21 µm. Va de ø25,000 a ø25,021 mm.',
+   'Eje g6: desviaciones es = −7 µm y ei = −20 µm. Va de ø24,980 a ø24,993 mm.',
+   'Juego máximo: el agujero más grande con el eje más pequeño: J_máx = ES − ei = 21 − (−20) = 41 µm.',
+   'Juego mínimo: el agujero más pequeño con el eje más grande: J_mín = EI − es = 0 − (−7) = 7 µm.',
+   'Como J_mín > 0, el ajuste tiene juego en todos los casos: es un ajuste con holgura, nunca apriete.',
+   'Comprobación: la tolerancia del ajuste es J_máx − J_mín = 41 − 7 = 34 µm, que debe ser la suma de las tolerancias 21 (H7) + 13 (g6) = 34 µm ✓.'
+  ];
+  a.html(`<div>${T[p]}</div>`);
+ }});
+
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();
