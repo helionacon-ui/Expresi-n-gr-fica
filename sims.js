@@ -530,5 +530,25 @@ SIMS.ajustePaso=el=>build(el,{w:640,h:380,
   a.html(`<div>${T[p]}</div>`);
  }});
 
+
+/* ---- paso a paso declarativo ---- */
+SIMS.__paso=(el,D)=>build(el,{w:D.w||660,h:D.h||340,
+ sliders:[{k:'paso',v:0,min:0,max:D.steps.length,step:1,l:'paso de la resolución (0 = enunciado)',u:''}],
+ draw(a){a.clear();const g=a.g,p=a.st.paso;
+  const it=(x,col)=>{const k=x[0];
+   if(k==='t')a.txt(x[1],x[2],x[3],col,x[4]||13,x[5]||'left');
+   else if(k==='l')a.line(x[1],x[2],x[3],x[4],col,x[5]||1.5,x[6]);
+   else if(k==='a')a.arrow(x[1],x[2],x[3],x[4],col,x[5]);
+   else if(k==='c')a.circ(x[1],x[2],x[3],col,!!x[4]);
+   else if(k==='r'){g.strokeStyle=col;g.lineWidth=1.8;if(x[5]){g.fillStyle=col;g.globalAlpha=.18;g.fillRect(x[1],x[2],x[3],x[4]);g.globalAlpha=1;}g.strokeRect(x[1],x[2],x[3],x[4]);}
+   else if(k==='p'){g.strokeStyle=col;g.lineWidth=x[2]||2;g.beginPath();x[1].forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]));g.stroke();}};
+  (D.base||[]).forEach(x=>it(x,C.muted));
+  D.steps.forEach((s,i)=>{if(i+1>p)return;const cur=(i+1===p);(s.add||[]).forEach(x=>it(x,cur?C.d:C.text));if(cur)(s.now||[]).forEach(x=>it(x,C.d));});
+  a.html('<div>'+(p===0?D.q:D.steps[p-1].text)+'</div>');}});
+/* ---- fin paso a paso declarativo ---- */
+
+/* ---- paso2 escalaPaso ---- */
+SIMS.escalaPaso=el=>SIMS.__paso(el,{"w":640,"h":290,"q":"Una pieza de 1500 × 900 mm debe dibujarse en un A3. ¿Qué escala normalizada eliges y qué cotas llevan? Sube el paso.","base":[["t","Pieza 1500 × 900 mm · formato A3 (420 × 297)",30,26,13,"left"]],"steps":[{"text":"Hay que dibujar una pieza rectangular de <b>1500 × 900 mm</b> en un formato <b>A3 (420 × 297 mm)</b>. Con márgenes de 10 mm el área útil es <b>400 × 277 mm</b>. ¿Qué escala normalizada se usa?","add":[["r",330,70,151.20000000000002,106.92000000000002,0],["t","A3",335,192.92000000000002,12,"left"]]},{"text":"La escala es <b>E = medida en el dibujo / medida real</b>. Para que quepa a lo largo: 1500·E ≤ 400 ⇒ <b>E ≤ 0,267</b> (1:3,75).","add":[["t","1500·E ≤ 400  ⇒  E ≤ 0,267",30,64,15,"left"]]},{"text":"A lo alto: 900·E ≤ 277 ⇒ <b>E ≤ 0,308</b>. Manda la condición más restrictiva: <b>E ≤ 0,267</b> (en la dimensión de 1500 mm).","add":[["t","900·E ≤ 277  ⇒  E ≤ 0,308",30,98,15,"left"]]},{"text":"Se elige la mayor escala <b>normalizada</b> que cumpla. Las de reducción son 1:2, 1:5, 1:10, 1:20, 1:50… 1:2 (E = 0,5) no cabe; <b>1:5 (E = 0,2) sí</b>. No vale 1:4 porque no es normalizada.","add":[["t","1:2 no cabe  ·  1:5 sí cabe",30,132,15,"left"]]},{"text":"Medidas en el papel: 1500/5 = <b>300 mm</b> y 900/5 = <b>180 mm</b>, dentro del área útil (400 × 277).","add":[["r",340.8,80.8,108.0,64.8,1],["t","300 × 180 mm en el papel",30,166,15,"left"]]},{"text":"En el plano, la <b>cota lleva siempre la medida real</b> (1500 y 900), no la medida dibujada, y la escala se indica en el cajetín como <b>ESCALA 1:5</b>. Un error muy común es acotar 300 y 180.","add":[["t","cotas: 1500 y 900 (reales)",30,200,15,"left"],["t","cajetín: ESCALA 1:5",30,230,15,"left"]]},{"text":"Las <b>áreas</b> se reducen con el cuadrado de la escala: 1/5² = 1/25. Para detalles pequeños se amplía: una pieza de 2 mm a escala <b>10:1</b> se dibuja con 20 mm.","add":[["t","área dibujada = real / 25  ·  2 mm a 10:1 → 20 mm",30,264,14,"left"]]}]});
+/* ---- fin paso2 escalaPaso ---- */
 document.querySelectorAll('[data-sim]').forEach(el=>{const f=SIMS[el.dataset.sim];if(f)f(el);});
 })();
