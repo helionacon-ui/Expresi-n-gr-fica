@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -45,7 +85,7 @@ details>summary{line-height:1.7;padding-block:.5em}
 <nav aria-label="Índice" class="toc"><a href="index.html" style="--tc:var(--c0)">Portada</a><div class="grp">Empezar</div><a href="index.html#cero" style="--tc:var(--c0)">Empieza aquí desde cero</a><a href="plan.html" style="--tc:var(--c0)">Cómo es la evaluación</a><a href="index.html#progreso" style="--tc:var(--c0)">Tu progreso</a><div class="grp">UD1 · Geometría y sistemas de representación</div><a href="tema-01.html" style="--tc:var(--c2)">T1 Construcciones geométricas y tangencias</a><a href="tema-02.html" style="--tc:var(--c3)">T2 Curvas cónicas y transformaciones en el plano</a><a href="tema-03.html" style="--tc:var(--c4)">T3 Sistema diédrico</a><a href="tema-04.html" style="--tc:var(--c5)">T4 Sistema axonométrico: isométrica y caballera</a><div class="grp">UD2 · Normalización y representación industrial</div><a href="tema-05.html" style="--tc:var(--c6)">T5 Normalización, formatos y escalas</a><a href="tema-06.html" style="--tc:var(--c7)">T6 Vistas, cortes y secciones</a><a href="tema-07.html" style="--tc:var(--c8)">T7 Acotación</a><a href="tema-08.html" style="--tc:var(--c1)">T8 Elementos roscados</a><a href="tema-09.html" style="--tc:var(--c2)">T9 Terminación y calidad de superficies</a><a href="tema-10.html" style="--tc:var(--c3)">T10 Tolerancias dimensionales y ajustes</a><a href="tema-11.html" style="--tc:var(--c4)">T11 Tolerancias geométricas</a><a href="tema-12.html" style="--tc:var(--c5)">T12 Representaciones de conjunto y despiece</a><div class="grp">UD3-UD4 · CAD y esquemas</div><a href="tema-13.html" style="--tc:var(--c6)">T13 Diseño asistido por ordenador: CAD, transformaciones y GCS</a><a href="tema-14.html" style="--tc:var(--c7)">T14 Esquemas eléctricos y electrónicos</a><div class="grp">Practicar</div><a href="cuestiones.html" style="--tc:var(--c8)">Preguntas de desarrollo respondidas</a><a href="examenes.html" style="--tc:var(--c8)">Ejercicios de examen resueltos</a><a href="problemas.html" style="--tc:var(--c8)" class="on" aria-current="page">El examen por dentro (2005-2012)</a><a href="laboratorio.html" style="--tc:var(--c7)">Prácticas</a><a href="formulario.html" style="--tc:var(--c8)">Chuleta</a></nav>
 <main>
 <section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)"><div class="sh"><span aria-hidden="true" class="badge">✓</span><div class="shx"><p class="kick">Practicar</p><h2 id="radio">El examen por dentro</h2><div class="tags"><span class="tag">8 años analizados</span></div></div></div>
-<div class="zero"><p class="ft">La estructura que se repite</p><p>Un <b>problema de dibujo largo</b> (despiece desde conjunto o vistas desde perspectiva, 4-5 puntos, a menudo a mano alzada y «acotando sin cifras según normas»), un <b>ajuste ISO</b> con tablas, <b>tolerancias geométricas</b> que interpretar o indicar, <b>acabado superficial</b>, algo de <b>roscas</b>, un <b>esquema eléctrico o electrónico</b> que explicar, las <b>matrices del CAD</b> y una <b>pregunta de desarrollo</b>. En septiembre suele entrar además una <b>cónica</b> (elipse por diámetros conjugados con tangentes).</p></div>
+<div class="zero"><p class="ft">La estructura que se repite</p><p class="lede">Un <b>problema de dibujo largo</b> (despiece desde conjunto o vistas desde perspectiva, 4-5 puntos, a menudo a mano alzada y «acotando sin cifras según normas»), un <b>ajuste ISO</b> con tablas, <b>tolerancias geométricas</b> que interpretar o indicar, <b>acabado superficial</b>, algo de <b>roscas</b>, un <b>esquema eléctrico o electrónico</b> que explicar, las <b>matrices del CAD</b> y una <b>pregunta de desarrollo</b>. En septiembre suele entrar además una <b>cónica</b> (elipse por diámetros conjugados con tangentes).</p></div>
 <h3>Qué cayó cada año (recopilación resuelta de tu carpeta)</h3>
 <div class="tw"><table><tr><th>Convocatoria</th><th>Ejercicios (puntos)</th></tr><tr><td>Febrero 2005</td><td>Despiece de conjunto (bomba de pistones) + perspectiva (5) · rugosidades N (0,5) · tolerancias 40j5/30h6 (1) · ajuste 70U9/f7 (—) · tol. geométricas (1) · roscas UNE 6410 (teoría)</td></tr><tr><td>Junio 2005</td><td>Despiece cuerpo de bomba (5) · rugosidades N8/N7/N5 (0,5) · ∅55k5-∅42h6 (1) · tol. geométricas sobre eje (1) · lista de elementos (0,5) · GCS (2)</td></tr><tr><td>Septiembre 2005</td><td>Elipse por diámetros conjugados + tangentes (3) · vistas desde perspectiva + acotar sin cifras (4) · GCS (3)</td></tr><tr><td>Febrero 2006</td><td>Despiece transmisión a mano alzada + perspectiva (4) · ajuste 10G7/h7 (1) · tol. geométricas (1) · acabado N7 general + N4/torneado/sobremedida (1) · esquema unifilar ICP-IGA-ID-PIA (1) · normalización (2)</td></tr><tr><td>Junio 2006</td><td>Despiece reductor con N11/N7, F8, H13, P9, tol. geométricas (4) · giro 90° con matrices (2) · curvas de forma libre (2) · W70×1/6″ + unión atornillada + UNE 1037 + clasificación tol. geométricas (2)</td></tr><tr><td>Septiembre 2006</td><td>Elipse: ejes y tangentes paralelas (4) · vistas mínimas con cortes + acotar (4) · estructura de un programa CAD (2)</td></tr><tr><td>Febrero 2007</td><td>Despiece de 3 marcas de un explosionado (—) · isométrica desde vistas (—) · cortes/semicorte/detalle (—) · roscas Rd y S (—) · tol. geométricas (—) · giro 60° con matrices (—)</td></tr><tr><td>Junio 2007</td><td>Despiece husillo y soporte (—) · ajuste 10F9h7 (1) · símbolos ⏥ y ∥ (1) · leyendas de acabado a/b/c (1) · 8 componentes electrónicos (1) · diseño tradicional vs concurrente (2)</td></tr><tr><td>Septiembre 2007</td><td>Vistas mínimas desde perspectiva a mano alzada (5) · documentos del proyecto (5)</td></tr><tr><td>Febrero 2008</td><td>Tangencias por inversión/potencia (2) · despiece marca 1 (2) · ajustes 24H7/h6 y 32J7/j6 (1) · tol. geométricas ⊥, oscilación, posición + acabados (1) · GCS con árbol (2) · contactor marcha-paro (1)</td></tr><tr><td>Junio 2009</td><td>Tol. geométricas con Ø (1) · acabado: indicación general (1) · circuito de dos motores (2)</td></tr><tr><td>Septiembre 2009</td><td>Despiece eje de tensor + isométrica a mano alzada (4) · ajuste 46E11/f10 (2) · contactor con dos conmutadores (2) · CIM (2)</td></tr><tr><td>Febrero 2010</td><td>Elipse afín de una circunferencia (2) · despiece completo de un conjunto (3) · circuito de dos motores con temporizador (2) · 10 componentes electrónicos (1) · dispositivos de entrada CAD (2)</td></tr></table></div>
 <div class="box key"><h4>Orden de ataque recomendado</h4><ol><li>Las cuestiones cortas seguras: ajuste ISO, acabado, rosca, tolerancias geométricas (≈3-4 puntos en 40 minutos con el método de esta guía).</li><li>La pregunta de desarrollo con su guion.</li><li>El esquema eléctrico/electrónico (tabla símbolo-nombre-función).</li><li>El problema de dibujo al final, con el tiempo restante y sin prisa en la acotación: cada símbolo correcto puntúa.</li></ol></div>

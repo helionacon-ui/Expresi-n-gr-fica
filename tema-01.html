@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,26 +86,26 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">1</span><div class="shx"><p class="kick">UD1 · Geometría y sistemas de representación · Tema 1</p><h2 id="t1">Construcciones geométricas y tangencias</h2><div class="tags"><span class="tag">UD1 · Geometría y sistemas de representación</span><span class="tag">Se dibuja en el examen</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Construir polígonos regulares (convexos y estrellados), usar los lugares geométricos y la media proporcional, y resolver tangencias por potencia, eje radical y centro radical.</p><p><b>Polígonos regulares</b>: equiláteros y equiángulos; quedan inscritos y circunscritos a la vez en una circunferencia. El centro O equidista de lados y vértices; la <b>apotema</b> es la distancia de O al punto medio de un lado. Ángulo central \(\alpha_c=360^\circ/n\); ángulo interior \(\alpha_i=180^\circ-\alpha_c\). <b>Convexo</b>: cierra en una vuelta; <b>estrellado</b>: cierra en dos o más circunvoluciones. Orden de los estrellados: números menores y enteros que n/2 y primos con n (el pentágono tiene el de orden 2; el eneágono los de orden 2 y 4; el hexágono ninguno).</p>
-<p><b>Igualdad de figuras</b>: dos figuras son iguales cuando pueden descomponerse en el mismo número de triángulos iguales e igualmente dispuestos. Métodos de copia: triangulación, radiación interior, rodeo o itinerario, radiación exterior, coordenadas y simetría central.</p>
-<p><b>Media proporcional</b>: en un triángulo rectángulo, la altura sobre la hipotenusa es media proporcional entre los dos segmentos que determina (\(h^2=n\cdot m\)) y cada cateto lo es entre la hipotenusa y su proyección (\(c^2=a\cdot n\)). Permite construir \(x=\sqrt{r\cdot s}\) con regla y compás.</p>
-<p><b>Lugares geométricos</b> básicos: la mediatriz de AB (puntos que equidistan de A y B; centros de las circunferencias que pasan por A y B), la bisectriz (equidistan de dos rectas), la paralela a distancia d (centros de circunferencias de radio d tangentes a una recta) y la circunferencia concéntrica (tangentes a una circunferencia).</p>
-<p><b>Potencia</b> de un punto P respecto a una circunferencia: \(\mathrm{Pot}=\overline{PA}\cdot\overline{PB}\) constante para toda secante; el segmento de tangente PT la representa (\(\mathrm{Pot}=PT^2\)). <b>Eje radical</b> de dos circunferencias: lugar geométrico de los puntos con igual potencia respecto de ambas (recta perpendicular a la línea de centros); <b>centro radical</b> de tres: punto de corte de dos ejes radicales, con igual potencia respecto a las tres.</p>
-<p><b>Tangencias por potencia</b> (circunferencias que pasan por «3 datos»: puntos, rectas o circunferencias): 1) traza el <b>haz de centros</b> HC₀ (mediatriz si hay dos puntos, bisectriz entre dos rectas, perpendicular por el punto de tangencia…); 2) dibuja una <b>circunferencia auxiliar</b> con centro en HC₀ que pase por los datos sin punto de tangencia; 3) halla <b>dos ejes radicales</b>; 4) su corte es el <b>centro radical</b>, que equidista de todos los puntos de tangencia; 5) obtén los nuevos puntos de tangencia y los nuevos haces de centros; 6) corta HC₀ con ellos: <b>centros solución</b> O₁ y O₂.</p></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Construir polígonos regulares (convexos y estrellados), usar los lugares geométricos y la media proporcional, y resolver tangencias por potencia, eje radical y centro radical.</p><p class="run"><b>Polígonos regulares:</b> equiláteros y equiángulos; quedan inscritos y circunscritos a la vez en una circunferencia. El centro O equidista de lados y vértices; la <b>apotema</b> es la distancia de O al punto medio de un lado. Ángulo central \(\alpha_c=360^\circ/n\); ángulo interior \(\alpha_i=180^\circ-\alpha_c\). <b>Convexo</b>: cierra en una vuelta; <b>estrellado</b>: cierra en dos o más circunvoluciones. Orden de los estrellados: números menores y enteros que n/2 y primos con n (el pentágono tiene el de orden 2; el eneágono los de orden 2 y 4; el hexágono ninguno).</p>
+<p class="run"><b>Igualdad de figuras:</b> dos figuras son iguales cuando pueden descomponerse en el mismo número de triángulos iguales e igualmente dispuestos. Métodos de copia: triangulación, radiación interior, rodeo o itinerario, radiación exterior, coordenadas y simetría central.</p>
+<p class="run"><b>Media proporcional:</b> en un triángulo rectángulo, la altura sobre la hipotenusa es media proporcional entre los dos segmentos que determina (\(h^2=n\cdot m\)) y cada cateto lo es entre la hipotenusa y su proyección (\(c^2=a\cdot n\)). Permite construir \(x=\sqrt{r\cdot s}\) con regla y compás.</p>
+<p class="run"><b>Lugares geométricos:</b> básicos: la mediatriz de AB (puntos que equidistan de A y B; centros de las circunferencias que pasan por A y B), la bisectriz (equidistan de dos rectas), la paralela a distancia d (centros de circunferencias de radio d tangentes a una recta) y la circunferencia concéntrica (tangentes a una circunferencia).</p>
+<p class="run"><b>Potencia:</b> de un punto P respecto a una circunferencia: \(\mathrm{Pot}=\overline{PA}\cdot\overline{PB}\) constante para toda secante; el segmento de tangente PT la representa (\(\mathrm{Pot}=PT^2\)). <b>Eje radical</b> de dos circunferencias: lugar geométrico de los puntos con igual potencia respecto de ambas (recta perpendicular a la línea de centros); <b>centro radical</b> de tres: punto de corte de dos ejes radicales, con igual potencia respecto a las tres.</p>
+<p class="run"><b>Tangencias por potencia:</b> (circunferencias que pasan por «3 datos»: puntos, rectas o circunferencias): 1) traza el <b>haz de centros</b> HC₀ (mediatriz si hay dos puntos, bisectriz entre dos rectas, perpendicular por el punto de tangencia…); 2) dibuja una <b>circunferencia auxiliar</b> con centro en HC₀ que pase por los datos sin punto de tangencia; 3) halla <b>dos ejes radicales</b>; 4) su corte es el <b>centro radical</b>, que equidista de todos los puntos de tangencia; 5) obtén los nuevos puntos de tangencia y los nuevos haces de centros; 6) corta HC₀ con ellos: <b>centros solución</b> O₁ y O₂.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">El arco capaz de 90° localiza los puntos de tangencia</div><svg viewBox="0 0 560 262" role="img" aria-label="Tangentes desde un punto exterior" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><circle cx="205" cy="130" r="50" fill="none" stroke="var(--tc,var(--accent))" stroke-width="2.8" opacity="1"/><circle cx="135" cy="130" r="70" fill="none" stroke="var(--muted)" stroke-width="1.4" opacity="1" stroke-dasharray="5 4"/><line x1="65" y1="130" x2="187.1" y2="176.7" stroke="var(--c5,#c43d63)" stroke-width="2.6" opacity="1" stroke-linecap="round"/><line x1="205" y1="130" x2="187.1" y2="176.7" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="4 4" opacity="1" stroke-linecap="round"/><circle cx="187.1" cy="176.7" r="4.5" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="1"/><line x1="65" y1="130" x2="187.1" y2="83.3" stroke="var(--c5,#c43d63)" stroke-width="2.6" opacity="1" stroke-linecap="round"/><line x1="205" y1="130" x2="187.1" y2="83.3" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="4 4" opacity="1" stroke-linecap="round"/><circle cx="187.1" cy="83.3" r="4.5" fill="var(--warn,#b8730c)" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="65" cy="130" r="4.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="205" cy="130" r="3.5" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><text x="57" y="135" fill="var(--fg)" font-size="15" text-anchor="end" font-weight="700" opacity="1">P</text><text x="211" y="146" fill="var(--fg)" font-size="14" text-anchor="start" font-weight="700" opacity="1">O</text><text x="181.1" y="194.7" fill="var(--warn,#b8730c)" font-size="14" text-anchor="end" font-weight="700" opacity="1">T₁</text><text x="181.1" y="75.3" fill="var(--warn,#b8730c)" font-size="14" text-anchor="end" font-weight="700" opacity="1">T₂</text><text x="135" y="218" fill="var(--muted)" font-size="12" text-anchor="middle" opacity="1">circunferencia de diámetro PO</text><text x="330" y="60" fill="var(--tc,var(--accent))" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">Tangente ⟂ radio en T</text><text x="330" y="93" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Se traza la circunferencia</text><text x="330" y="115" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">de diámetro PO: corta a la</text><text x="330" y="137" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">dada en T₁ y T₂.</text><text x="330" y="170" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Es el arco capaz de 90°.</text></svg><figcaption>Todo ángulo inscrito en una semicircunferencia es recto: por eso OT ⟂ PT. Desde un punto exterior hay siempre dos tangentes.</figcaption></figure><figure class="ill"><div class="ill-t">Enlace de dos circunferencias con un arco</div><svg viewBox="0 0 560 262" role="img" aria-label="Circunferencia tangente a otras dos" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><circle cx="70" cy="160" r="34" fill="none" stroke="var(--muted)" stroke-width="2.4" opacity="1"/><circle cx="210" cy="160" r="44" fill="none" stroke="var(--muted)" stroke-width="2.4" opacity="1"/><circle cx="134.4" cy="123.5" r="40" fill="none" stroke="var(--tc,var(--accent))" stroke-width="3" opacity="1"/><path d="M143.6,152.8 A74,74 0 0 0 113.9,100.5" fill="none" stroke="var(--warn,#b8730c)" stroke-width="1.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><path d="M155.8,95.9 A84,84 0 0 0 126,157.4" fill="none" stroke="var(--warn,#b8730c)" stroke-width="1.4" opacity="1" stroke-linejoin="round" stroke-linecap="round"/><line x1="70" y1="160" x2="134.4" y2="123.5" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 4" opacity="1" stroke-linecap="round"/><line x1="210" y1="160" x2="134.4" y2="123.5" stroke="var(--muted)" stroke-width="1.2" stroke-dasharray="4 4" opacity="1" stroke-linecap="round"/><circle cx="99.6" cy="143.2" r="4.5" fill="var(--c5,#c43d63)" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="170.4" cy="140.9" r="4.5" fill="var(--c5,#c43d63)" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="70" cy="160" r="3" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="210" cy="160" r="3" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><circle cx="134.4" cy="123.5" r="3" fill="var(--fg)" stroke="none" stroke-width="1.8" opacity="1"/><text x="70" y="210" fill="var(--muted)" font-size="13" text-anchor="middle" font-style="italic" opacity="1">r₁</text><text x="210" y="220" fill="var(--muted)" font-size="13" text-anchor="middle" font-style="italic" opacity="1">r₂</text><text x="134.4" y="75.5" fill="var(--tc,var(--accent))" font-size="14" text-anchor="middle" font-weight="700" opacity="1">R</text><text x="330" y="60" fill="var(--tc,var(--accent))" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">Centro de la tangente:</text><text x="330" y="82" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">intersección de dos arcos,</text><text x="330" y="104" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">de radios R + r₁ y R + r₂</text><text x="330" y="126" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">(tangencia exterior).</text><text x="330" y="159" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Interior: radios R − r.</text><text x="330" y="181" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Punto de tangencia: en la</text><text x="330" y="203" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">recta que une los centros.</text></svg><figcaption>Los puntos de tangencia están alineados con los centros. Este es el método general para enlazar arcos con radios dados.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 1 <span class="src">5 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">αc = 360/n</td><td>Ángulo central</td><td class="u">αi = 180 − αc</td></tr><tr><td class="sym">apotema</td><td>Centro a punto medio del lado</td><td class="u"></td></tr><tr><td class="sym">estrellado orden k</td><td>k < n/2, primo con n</td><td class="u"></td></tr><tr><td class="sym">h² = n·m</td><td>Media proporcional</td><td class="u">√(r·s) con regla y compás</td></tr><tr><td class="sym">eje radical</td><td>Igual potencia respecto a dos circunferencias</td><td class="u">⊥ línea de centros</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · polígonos regulares y estrellados</p><div data-sim="poligonos"></div><figcaption>Mueve los controles y lee el recuadro: la figura construye lo mismo que tú trazarías en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Las herramientas del dibujo geométrico</p><p>Con regla y compás se pueden resolver casi todos los problemas de este tema. Dos ideas lo sostienen: (1) el <b>lugar geométrico</b> (un punto que cumple una condición está en una recta o circunferencia concreta, y cuando cumple dos condiciones, está en la <b>intersección</b> de dos lugares) y (2) la <b>simetría</b> (mediatriz = puntos equidistantes de dos puntos; bisectriz = puntos equidistantes de dos rectas).</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Las herramientas del dibujo geométrico</p><p class="lede">Con regla y compás se pueden resolver casi todos los problemas de este tema. Dos ideas lo sostienen: (1) el <b>lugar geométrico</b> (un punto que cumple una condición está en una recta o circunferencia concreta, y cuando cumple dos condiciones, está en la <b>intersección</b> de dos lugares) y (2) la <b>simetría</b> (mediatriz = puntos equidistantes de dos puntos; bisectriz = puntos equidistantes de dos rectas).</p>
 <p>Un polígono regular de \(n\) lados está inscrito en una circunferencia, y su ángulo central es \(360^\circ/n\). El hexágono es el más fácil de trazar: su lado <b>es igual al radio</b>.</p><p class="ft">Tangencias: la regla del radio perpendicular</p><p>Todo problema de tangencias se resuelve con una única propiedad: en el punto de tangencia, el <b>radio es perpendicular a la tangente</b>, y el centro de una circunferencia tangente a otra está sobre la recta que une los centros. Por eso: el centro de una circunferencia tangente a una recta está en una <b>paralela</b> a ella a distancia \(r\); si es tangente a otra circunferencia de radio \(R\), está en una concéntrica de radio \(R\pm r\) (suma si es exterior, resta si es interior).</p>
 <p>Método: convierte cada condición en un lugar de los centros (paralela o concéntrica), intersecta dos lugares y obtienes el centro. El punto de tangencia está en la recta de los centros (o en la perpendicular bajada desde el centro).</p></div><!--/amp1--><!--deep--><h3 id="t1-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. La idea de fondo: todo se reduce a lugares geométricos</h4>
+<h4><span class="hn">1</span>La idea de fondo: todo se reduce a lugares geométricos</h4>
 <div class="box key deepnote"><b>Idea clave.</b> cada construcción es la <b>intersección de dos lugares geométricos</b>. Si sabes qué lugar cumple cada condición, el punto buscado es donde se cortan.</div>
 <ul><li><b>Mediatriz</b> de AB: puntos que equidistan de A y B.</li><li><b>Bisectriz</b> de un ángulo: puntos que equidistan de los dos lados.</li><li><b>Circunferencia</b> de centro O y radio r: puntos a distancia r de O.</li><li><b>Paralela</b> a una recta a distancia d: dos rectas.</li></ul>
-<h4>2. Tangencias: el centro se halla con la condición de tangencia</h4>
+<h4><span class="hn">2</span>Tangencias: el centro se halla con la condición de tangencia</h4>
 <ul><li>Una circunferencia es <b>tangente a una recta</b> si la distancia del centro a la recta es el radio. El centro está en la <b>paralela</b> a distancia \(r\).</li><li>Es <b>tangente a otra circunferencia</b> si la distancia entre centros es \(R+r\) (exterior) o \(|R-r|\) (interior). El centro está en una circunferencia <b>concéntrica</b> de radio \(R\pm r\).</li><li>El <b>punto de tangencia</b> está siempre alineado con los dos centros (o es el pie de la perpendicular desde el centro a la recta).</li></ul>
 <details class="dem"><summary><span class="pn">∴</span>Método general de un problema de tangencias, paso a paso</summary><div class="inner"><ol class="pasos"><li>Anota las condiciones: pasa por un punto, es tangente a una recta, a una circunferencia, tiene un radio dado…</li><li>Para cada condición, dibuja el <b>lugar geométrico del centro</b>.</li><li>Los centros posibles son las <b>intersecciones</b> de esos lugares (puede haber varias soluciones).</li><li>Halla los puntos de tangencia y traza.</li></ol>
 <div class="box trap deepnote"><b>Cuidado.</b> Marca <b>siempre</b> los puntos de tangencia: en una lámina de examen se evalúan.</div></div></details>
-<h4>3. Enlaces</h4>
+<h4><span class="hn">3</span>Enlaces</h4>
 <p>Un <b>enlace</b> es un arco tangente que une dos curvas o rectas con continuidad: no hay «picos» en el empalme. Si conoces los dos elementos a unir y el radio, el centro del arco es la intersección de dos lugares geométricos (paralelas o concéntricas), según el caso.</p>
 </div><!--/deep--><h3 id="t1-formulas">Lo que tienes que saber</h3>
 <div class="box key"><ul>

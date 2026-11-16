@@ -17,24 +17,64 @@
 <style id="lectura">
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
-body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
-p{margin:0 0 1.75em}
-li{margin:.8em 0}
-p,li{max-width:62ch}
+body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
+p{margin:0 0 1.5em;max-width:64ch;hyphens:auto;-webkit-hyphens:auto}
+li{margin:.72em 0;max-width:64ch}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
-h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
-h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
-h4{margin-top:34px;margin-bottom:10px}
-.box{padding:24px 30px;margin:32px 0}
-table{font-size:18px;line-height:1.75}
-td,th{padding-top:.85em;padding-bottom:.85em}
-figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);letter-spacing:.1em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font:700 12px/1.7 var(--mono,monospace);letter-spacing:.09em;
+ text-transform:uppercase;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2em;font-size:12.5px;color:var(--fg);opacity:.72}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+.eqd{margin:1.65em 0;text-align:center;overflow-x:auto;overflow-y:hidden}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font:700 11.5px/1.7 var(--mono,monospace);
+ letter-spacing:.1em;text-transform:uppercase;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:18px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:17px;line-height:1.78;margin-top:12px}
 figure.fig{margin-block:34px}
-.lede{line-height:1.85}
 .toc a{font-size:15.5px;padding:8px 0 8px 10px}
 svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
-@media (max-width:600px){body{font-size:19px;line-height:2}}
+.enun p,.inner p{text-align:left}
+@media (min-width:1040px){
+p,li{text-align:justify}
+.zero .lede,.enun p,.inner p,figcaption,.ft{text-align:left}
+}
+@media (max-width:600px){
+body{font-size:18.5px;line-height:1.9}
+p{text-align:left}
+.zero .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
 }
 </style>
 </head>
@@ -46,19 +86,19 @@ details>summary{line-height:1.7;padding-block:.5em}
 <main>
 <section class="sec tema" style="--tc:var(--c3);--tcs:var(--c3s)">
 <div class="sh"><span aria-hidden="true" class="badge">10</span><div class="shx"><p class="kick">UD2 · Normalización y representación industrial · Tema 10</p><h2 id="t10">Tolerancias dimensionales y ajustes</h2><div class="tags"><span class="tag">UD2 · Normalización y representación industrial</span><span class="tag">Cuestión y cálculo</span></div></div></div>
-<div class="zero"><p class="ft">Desde cero</p><p><b>Objetivo:</b> Calcular con las tablas ISO las magnitudes de ejes y agujeros (t, di, ds, dM, dm), clasificar ajustes (juego, aprieto, indeterminado) con sus magnitudes (JM, Jm, AM, Am, TJ, TA, TI) y representar los croquis.</p><p>Dos piezas fabricadas en serie nunca son exactamente iguales: se fijan <b>tolerancias</b>, márgenes admisibles para las cotas funcionales. Convenio: <b>MAYÚSCULAS para agujeros, minúsculas para ejes</b>.</p>
-<p><b>Definiciones</b>: dimensión nominal (DN/dN, la teórica), efectiva (la medida real), límites máxima y mínima (DM/Dm, dM/dm). <b>Desviaciones</b>: superior Ds/ds = máxima − nominal; inferior Di/di = mínima − nominal. <b>Tolerancia</b> T = Ds − Di (t = ds − di). La <b>notación ISO</b> tiene tres componentes: nominal + letra de posición (posición de la zona de tolerancia respecto a la línea cero: A…ZC agujeros, a…zc ejes; H tiene Di = 0 y h tiene ds = 0; Js/js centrada) + número de <b>calidad</b> IT01…IT16 (amplitud de la zona en µm, función del grupo de diámetros; tablas).</p>
-<p><b>Ajuste</b>: relación entre un agujero y un eje que encajan. <b>Con juego</b>: el eje siempre menor (JM = DM − dm; Jm = Dm − dM ≥ 0; TJ = JM − Jm = T + t). <b>Con aprieto</b>: el eje siempre mayor (AM = dM − Dm; Am = dm − DM ≥ 0; TA = AM − Am). <b>Indeterminado</b>: puede salir juego o aprieto (TI = juego máximo + aprieto máximo). Sistemas: <b>agujero base</b> (agujero H, el más usado), <b>eje base</b> (eje h) y mixto. La elección de ajustes atiende a estado superficial, material, velocidad, temperatura y desgaste; agujero de calidad asociada a eje de calidad igual o inferior, sin diferir más de dos índices.</p>
-<p><b>Procedimiento de examen</b> (cae todos los años: 70U9/f7, 10G7/h7, 10F9h7, 46E11/f10, 24H7/h6, 32J7/j6…): tablas → desviación fundamental de la letra → IT de la calidad → la otra desviación → dimensiones límite → tipo de ajuste y magnitudes → croquis acotado. Hay que «expresar claramente la obtención» de cada valor.</p></div>
+<div class="zero"><p class="ft">Desde cero</p><p class="obj"><b>Objetivo:</b> Calcular con las tablas ISO las magnitudes de ejes y agujeros (t, di, ds, dM, dm), clasificar ajustes (juego, aprieto, indeterminado) con sus magnitudes (JM, Jm, AM, Am, TJ, TA, TI) y representar los croquis.</p><p class="lede">Dos piezas fabricadas en serie nunca son exactamente iguales: se fijan <b>tolerancias</b>, márgenes admisibles para las cotas funcionales. Convenio: <b>MAYÚSCULAS para agujeros, minúsculas para ejes</b>.</p>
+<p class="run"><b>Definiciones:</b> dimensión nominal (DN/dN, la teórica), efectiva (la medida real), límites máxima y mínima (DM/Dm, dM/dm). <b>Desviaciones</b>: superior Ds/ds = máxima − nominal; inferior Di/di = mínima − nominal. <b>Tolerancia</b> T = Ds − Di (t = ds − di). La <b>notación ISO</b> tiene tres componentes: nominal + letra de posición (posición de la zona de tolerancia respecto a la línea cero: A…ZC agujeros, a…zc ejes; H tiene Di = 0 y h tiene ds = 0; Js/js centrada) + número de <b>calidad</b> IT01…IT16 (amplitud de la zona en µm, función del grupo de diámetros; tablas).</p>
+<p class="run"><b>Ajuste:</b> relación entre un agujero y un eje que encajan. <b>Con juego</b>: el eje siempre menor (JM = DM − dm; Jm = Dm − dM ≥ 0; TJ = JM − Jm = T + t). <b>Con aprieto</b>: el eje siempre mayor (AM = dM − Dm; Am = dm − DM ≥ 0; TA = AM − Am). <b>Indeterminado</b>: puede salir juego o aprieto (TI = juego máximo + aprieto máximo). Sistemas: <b>agujero base</b> (agujero H, el más usado), <b>eje base</b> (eje h) y mixto. La elección de ajustes atiende a estado superficial, material, velocidad, temperatura y desgaste; agujero de calidad asociada a eje de calidad igual o inferior, sin diferir más de dos índices.</p>
+<p class="run"><b>Procedimiento de examen:</b> (cae todos los años: 70U9/f7, 10G7/h7, 10F9h7, 46E11/f10, 24H7/h6, 32J7/j6…): tablas → desviación fundamental de la letra → IT de la calidad → la otra desviación → dimensiones límite → tipo de ajuste y magnitudes → croquis acotado. Hay que «expresar claramente la obtención» de cada valor.</p></div>
 <!--ill--><div class="ill-wrap"><h3 class="ill-h" style="margin:22px 0 4px">En imágenes</h3><figure class="ill"><div class="ill-t">Según se solapen las zonas de tolerancia</div><svg viewBox="0 0 560 262" role="img" aria-label="Tipos de ajuste" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="15" y1="120" x2="95" y2="120" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><rect x="29" y="100" width="24" height="20" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.25"/><rect x="57" y="132" width="24" height="18" rx="0" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="0.3"/><text x="55" y="176" fill="var(--fg)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">Con juego</text><text x="55" y="194" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">H7/g6</text><line x1="110" y1="120" x2="190" y2="120" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><rect x="124" y="100" width="24" height="20" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.25"/><rect x="152" y="108" width="24" height="20" rx="0" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="0.3"/><text x="150" y="176" fill="var(--fg)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">Indeterminado</text><text x="150" y="194" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">H7/k6</text><line x1="205" y1="120" x2="285" y2="120" stroke="var(--muted)" stroke-width="1.3" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><rect x="219" y="100" width="24" height="20" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.25"/><rect x="247" y="84" width="24" height="16" rx="0" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="0.3"/><text x="245" y="176" fill="var(--fg)" font-size="13" text-anchor="middle" font-weight="700" opacity="1">Con apriete</text><text x="245" y="194" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">H7/p6</text><text x="16" y="116" fill="var(--muted)" font-size="12" text-anchor="end" opacity="1">0</text><text x="29" y="94" fill="var(--tc,var(--accent))" font-size="11.5" text-anchor="middle" font-weight="700" opacity="1">agujero</text><text x="82" y="153" fill="var(--warn,#b8730c)" font-size="11.5" text-anchor="start" font-weight="700" opacity="1">eje</text><text x="312" y="56" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Juego: eje &lt; agujero.</text><text x="312" y="78" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">Apriete: eje &gt; agujero.</text><text x="312" y="111" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Sistema agujero base:</text><text x="312" y="133" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">el agujero es H.</text><text x="312" y="166" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">Letra = posición;</text><text x="312" y="188" fill="var(--muted)" font-size="13.5" text-anchor="start" opacity="1">número = calidad (anchura).</text></svg><figcaption>Se dibujan respecto a la línea cero (medida nominal). Si la zona del eje queda siempre por debajo de la del agujero, siempre hay juego.</figcaption></figure><figure class="ill"><div class="ill-t">Un ajuste real, con su juego máximo y mínimo</div><svg viewBox="0 0 560 262" role="img" aria-label="Ø50 H7/g6 en cifras" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,Segoe UI,sans-serif"><line x1="24" y1="130" x2="250" y2="130" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="4 3" opacity="1" stroke-linecap="round"/><text x="22" y="134" fill="var(--muted)" font-size="12" text-anchor="end" opacity="1">0</text><rect x="52" y="80" width="52" height="50" rx="0" fill="var(--tc,var(--accent))" stroke="var(--tc,var(--accent))" stroke-width="2" opacity="0.25"/><text x="78" y="74" fill="var(--tc,var(--accent))" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">H7  +25 / 0</text><rect x="124" y="148" width="52" height="32" rx="0" fill="var(--warn,#b8730c)" stroke="var(--warn,#b8730c)" stroke-width="2" opacity="0.3"/><text x="150" y="196" fill="var(--warn,#b8730c)" font-size="12.5" text-anchor="middle" font-weight="700" opacity="1">g6  −9 / −25</text><line x1="206" y1="80" x2="206" y2="172.8" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="206,180 202.7,172.7 209.3,172.7" fill="var(--c5,#c43d63)"/><line x1="206" y1="180" x2="206" y2="87.2" stroke="var(--c5,#c43d63)" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="206,80 209.3,87.3 202.7,87.3" fill="var(--c5,#c43d63)"/><text x="212" y="126" fill="var(--c5,#c43d63)" font-size="12.5" text-anchor="start" font-weight="700" opacity="1">Jmáx</text><line x1="236" y1="130" x2="236" y2="142.6" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="236,148 233.6,142.5 238.4,142.5" fill="var(--c6,#2c8a52)"/><line x1="236" y1="148" x2="236" y2="135.4" stroke="var(--c6,#2c8a52)" stroke-width="2" opacity="1" stroke-linecap="round"/><polygon points="236,130 238.4,135.5 233.6,135.5" fill="var(--c6,#2c8a52)"/><text x="242" y="162" fill="var(--c6,#2c8a52)" font-size="12.5" text-anchor="start" font-weight="700" opacity="1">Jmín</text><text x="24" y="236" fill="var(--fg)" font-size="12.5" text-anchor="start" font-weight="600" opacity="1">Jmáx = 25 − (−25) = 50 µm   ·   Jmín = 0 − (−9) = 9 µm</text><text x="312" y="60" fill="var(--fg)" font-size="14.5" text-anchor="start" font-weight="700" opacity="1">Siempre con juego:</text><text x="312" y="82" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">el eje nunca llega a</text><text x="312" y="104" fill="var(--fg)" font-size="14" text-anchor="start" opacity="1">rozar al agujero.</text><text x="312" y="137" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">Aplicación típica:</text><text x="312" y="159" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">ejes que deben girar</text><text x="312" y="181" fill="var(--tc,var(--accent))" font-size="14" text-anchor="start" font-weight="700" opacity="1">o deslizar.</text></svg><figcaption>Con tolerancias H7 en el agujero y g6 en el eje, para un diámetro de 50 mm el juego varía entre 9 y 50 µm.</figcaption></figure></div><!--/ill--><details class="nom"><summary><span aria-hidden="true" class="nom-ic">Aa</span>Nomenclatura del tema 10 <span class="src">5 símbolos</span></summary><div class="inner">
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">T = Ds − Di</td><td>Tolerancia</td><td class="u">t = ds − di</td></tr><tr><td class="sym">H / h</td><td>Di = 0 · ds = 0</td><td class="u">agujero/eje base</td></tr><tr><td class="sym">IT01…IT16</td><td>Calidades (µm)</td><td class="u">tablas</td></tr><tr><td class="sym">JM = DM − dm</td><td>Juego máximo</td><td class="u">Jm = Dm − dM</td></tr><tr><td class="sym">AM = dM − Dm</td><td>Aprieto máximo</td><td class="u">TI = JM + AM</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Calculadora · ajustes ISO con las tablas del examen</p><div data-sim="ajustes"></div><figcaption>Mueve los controles y lee el recuadro: la figura construye lo mismo que tú trazarías en el examen.</figcaption></figure>
-<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué hacen falta tolerancias</p><p>Fabricar exactamente una medida es imposible y absurdamente caro. Se admite una <b>variación</b>: la <b>tolerancia</b> \(T\) = diferencia entre la medida máxima y la mínima. Si cada pieza se hace dentro de su tolerancia, son <b>intercambiables</b>. Las medidas límite son \(D_M=D_N+D_s\) y \(D_m=D_N+D_i\), con \(D_N\) la medida nominal y \(D_s,D_i\) las desviaciones superior e inferior.</p><p class="ft">Ajustes: juego, apriete e indeterminado</p><p>Un ajuste combina un agujero y un eje del mismo nominal. Se mira el juego \(J=D-d\): si es siempre positivo, el ajuste es con <b>juego</b> (el eje gira o desliza); si siempre negativo, con <b>apriete</b> (eje montado a presión); si puede ser ambos, <b>indeterminado</b>. Se calculan: \(J_M=D_M-d_m\), \(J_m=D_m-d_M\) (si \(J_m<0\), es apriete máximo).</p>
+<!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Por qué hacen falta tolerancias</p><p class="lede">Fabricar exactamente una medida es imposible y absurdamente caro. Se admite una <b>variación</b>: la <b>tolerancia</b> \(T\) = diferencia entre la medida máxima y la mínima. Si cada pieza se hace dentro de su tolerancia, son <b>intercambiables</b>. Las medidas límite son \(D_M=D_N+D_s\) y \(D_m=D_N+D_i\), con \(D_N\) la medida nominal y \(D_s,D_i\) las desviaciones superior e inferior.</p><p class="ft">Ajustes: juego, apriete e indeterminado</p><p>Un ajuste combina un agujero y un eje del mismo nominal. Se mira el juego \(J=D-d\): si es siempre positivo, el ajuste es con <b>juego</b> (el eje gira o desliza); si siempre negativo, con <b>apriete</b> (eje montado a presión); si puede ser ambos, <b>indeterminado</b>. Se calculan: \(J_M=D_M-d_m\), \(J_m=D_m-d_M\) (si \(J_m<0\), es apriete máximo).</p>
 <p>La nomenclatura ISO combina una <b>letra</b> (posición de la tolerancia respecto a la línea cero: mayúscula agujero, minúscula eje) y un <b>número</b> (calidad IT: cuanto menor, más precisa). \(H7\) es el agujero base (\(D_i=0\)); \(h\) el eje base (\(d_s=0\)). Letras de a a g: ejes con juego; js–n: indeterminado; p–zc: apriete.</p></div><!--/amp1--><!--deep--><h3 id="t10-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
-<h4>1. Por qué hay tolerancias</h4>
+<h4><span class="hn">1</span>Por qué hay tolerancias</h4>
 <div class="box key deepnote"><b>Idea clave.</b> es imposible fabricar dos piezas idénticas. La <b>tolerancia</b> es la variación admitida en una medida para que la pieza siga funcionando.</div>
 <ul><li><b>Medida nominal \(N\)</b>, <b>límites superior \(M_s\)</b> e <b>inferior \(M_i\)</b>.</li><li><b>Tolerancia</b> \(T=M_s-M_i\). <b>Desviaciones:</b> \(\mathrm{ES}\), \(\mathrm{EI}\) (agujero); \(\mathrm{es}\), \(\mathrm{ei}\) (eje).</li></ul>
-<h4>2. El sistema ISO: letra y número</h4>
+<h4><span class="hn">2</span>El sistema ISO: letra y número</h4>
 <ul><li><b>Número (IT):</b> el <b>grado de tolerancia</b> (la amplitud). IT01…IT18: a más número, tolerancia mayor y fabricación más barata.</li><li><b>Letra:</b> la <b>posición</b> de la zona de tolerancia respecto a la línea de cero. <b>Mayúscula = agujero</b>, <b>minúscula = eje</b>.</li><li>Ejemplo: <code>Ø40 H7</code> es un agujero de 40 mm, posición H (desviación inferior nula), calidad 7.</li></ul>
 <p>Los <b>valores</b> se leen en las tablas según el diámetro nominal y el grado.</p>
 <details class="dem"><summary><span class="pn">∴</span>Ajustes: cómo van el eje y el agujero</summary><div class="inner"><div class="eqd">\[\text{Juego}=D_{agujero}-d_{eje}\]</div>
