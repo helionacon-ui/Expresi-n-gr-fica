@@ -118,7 +118,8 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <div class="tw"><table><tr><th>Símbolo</th><th>Qué significa</th><th>Unidades · ejemplo</th></tr><tr><td class="sym">A0 = 841×1189</td><td>1 m²; y = x·√2</td><td class="u">A4 = 210×297</td></tr><tr><td class="sym">márgenes</td><td>20 mm (A0-A1), 10 mm (A2-A4)</td><td class="u"></td></tr><tr><td class="sym">escala</td><td>dibujo/real</td><td class="u">cota = medida real</td></tr><tr><td class="sym">UNE / EN / ISO</td><td>España · Europa · internacional</td><td class="u"></td></tr><tr><td class="sym">cuadro rotulación</td><td>N.º + título + propietario</td><td class="u">UNE-EN ISO 7200</td></tr></table></div></div></details>
 <figure class="fig"><p class="ft">Figura interactiva · formatos de la serie A y escalas</p><div data-sim="formatos"></div><figcaption>Mueve los controles y lee el recuadro: la figura construye lo mismo que tú trazarías en el examen.</figcaption></figure>
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Formatos: la serie A</p><p class="lede">Los formatos de papel se rigen por una idea elegante: un rectángulo de lados \(x\) e \(y\) tiene la propiedad de que, al partirlo por la mitad por el lado mayor, el nuevo rectángulo es <b>semejante</b> al original. Esto exige \(y=x\sqrt2\). El A0 tiene 1 m² (841×1189 mm); cada formato siguiente tiene la mitad del área: A1 = 594×841, A2 = 420×594, A3 = 297×420, A4 = 210×297.</p><p class="ft">Escalas: la cota no cambia</p><p>La <b>escala</b> es la relación entre la medida del dibujo y la medida real: \(E=\dfrac{\text{dibujo}}{\text{real}}\). Escala 1:5 significa que el dibujo es 5 veces menor (reducción); 2:1, que es el doble (ampliación). Las escalas normalizadas son 1:2, 1:5, 1:10 (y sus múltiplos por 10) y 2:1, 5:1, 10:1.</p>
-<p class="run"><b>La cota siempre indica la medida real:</b> , sea cual sea la escala. Para elegir escala, elige la mayor de la serie que haga caber la pieza (con todas sus vistas y cotas) en la zona útil del formato.</p></div><!--/amp1--><!--deep--><h3 id="t5-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<p class="run"><b>La cota siempre indica la medida real:</b> , sea cual sea la escala. Para elegir escala, elige la mayor de la serie que haga caber la pieza (con todas sus vistas y cotas) en la zona útil del formato.</p></div><!--/amp1--><!--manim:eg-t5--><figure class="fig manim-fig" id="anim-eg-t5"><p class="ft">Animación · Formatos de A0 a A5</p><div class="manim" data-anim="eg-t5"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t5-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
 <h4><span class="hn">1</span>Por qué se normaliza</h4>
 <div class="box key deepnote"><b>Idea clave.</b> un plano es un <b>idioma común</b> entre quien diseña, quien fabrica y quien inspecciona. Las normas aseguran que todos lo lean igual.</div>
 <h4><span class="hn">2</span>Formatos y escalas</h4>
@@ -150,5 +151,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=19605" defer></script>
+<script src="anim-temas.js?v=19605" defer></script>
 </body>
 </html>

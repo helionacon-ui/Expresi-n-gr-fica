@@ -118,7 +118,8 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <figure class="fig"><p class="ft">Figura interactiva · acotación en serie, en paralelo y combinada</p><div data-sim="acotacion"></div><figcaption>Mueve los controles y lee el recuadro: la figura construye lo mismo que tú trazarías en el examen.</figcaption></figure>
 <!--amp1--><div class="zero" style="margin-top:14px"><p class="ft">Explicación ampliada</p><p class="ft">Qué hay que acotar y desde dónde</p><p class="lede">Una cota debe dar al operario <b>toda la información que necesita y ninguna más</b>: tamaños (largo, ancho, diámetros), posiciones de elementos y, si hace falta, tolerancias. Cada medida se da <b>una sola vez</b>, en la vista donde se ve con más claridad, y nunca sobre aristas ocultas.</p>
 <p>Regla de elaboración: acota primero el exterior, luego los detalles; elige una <b>superficie de referencia</b> (la que se mecaniza primero o la que ajusta con otra pieza) y mide desde ella siempre que puedas.</p><p class="ft">Cotas en serie, en paralelo y errores acumulados</p><p>Con <b>cotas en serie</b>, cada una arranca donde acaba la anterior: los errores de fabricación se <b>suman</b>. Con <b>cotas en paralelo</b> (todas desde una referencia común), cada medida es independiente y su error no se acumula. Si la distancia entre dos elementos es crítica, debe acotarse directamente, no obtenerse por diferencia.</p>
-<p>Símbolos: Ø diámetro, R radio, □ cuadrado, SØ esfera; chaflán «\(c\times45^\circ\)».</p></div><!--/amp1--><!--deep--><h3 id="t7-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
+<p>Símbolos: Ø diámetro, R radio, □ cuadrado, SØ esfera; chaflán «\(c\times45^\circ\)».</p></div><!--/amp1--><!--manim:eg-t7--><figure class="fig manim-fig" id="anim-eg-t7"><p class="ft">Animación · Acotar una pieza paso a paso</p><div class="manim" data-anim="eg-t7"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad.</figcaption></figure><!--/manim-->
+<!--deep--><h3 id="t7-profundiza">Desarrollo teórico a fondo</h3><div class="deep">
 <h4><span class="hn">1</span>Acotar: qué se quiere decir</h4>
 <div class="box key deepnote"><b>Idea clave.</b> la cota fija <b>cuánto mide</b> cada elemento y <b>dónde está</b>. Hay que acotar <b>lo necesario y solo una vez</b>: ni faltan ni sobran.</div>
 <ul><li><b>Cotas funcionales:</b> las que importan para que la pieza funcione.</li><li><b>No funcionales:</b> para fabricar. <b>Auxiliares</b> (entre paréntesis): solo informan.</li></ul>
@@ -149,5 +150,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 </div>
 <script src="app.js"></script>
 <script src="sims.js"></script>
+<script src="anim-manim.js?v=19605" defer></script>
+<script src="anim-temas.js?v=19605" defer></script>
 </body>
 </html>
